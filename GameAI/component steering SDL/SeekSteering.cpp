@@ -5,6 +5,7 @@
 #include "Game.h"
 #include "UnitManager.h"
 #include "Unit.h"
+#include <cmath>
 
 
 SeekSteering::SeekSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
@@ -46,6 +47,8 @@ Steering* SeekSteering::getSteering()
 		diff = pOwner->getPositionComponent()->getPosition() - mTargetLoc;
 	}
 
+	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4/2;
+	pOwner->getPositionComponent()->setFacing(dir);
 	diff.normalize();
 	diff *= pOwner->getMaxAcc();
 

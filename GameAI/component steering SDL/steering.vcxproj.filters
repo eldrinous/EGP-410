@@ -67,6 +67,9 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.cpp">
+      <Filter>Source Files\Steering</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -134,6 +137,9 @@
     </ClInclude>
     <ClInclude Include="Font.h">
       <Filter>Header Files\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.h">
+      <Filter>Header Files\Steering</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
