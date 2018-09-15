@@ -12,6 +12,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.h" />
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\FaceSteering.h" />
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderChaseSteering.h" />
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderSteering.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
@@ -37,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.cpp" />
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\FaceSterring.cpp" />
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderChaseSteering.cpp" />
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderSteering.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />

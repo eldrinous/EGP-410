@@ -7,7 +7,7 @@
 #include "Unit.h"
 #include <cmath>
 
-
+using namespace std;
 ArriveSteering::ArriveSteering(const UnitID& ownerID, const Vector2D& targetLoc, const UnitID& targetID, bool shouldFlee /*= false*/)
 	: Steering()
 {
@@ -30,7 +30,7 @@ Steering* ArriveSteering::getSteering()
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	//are we seeking a location or a unit?
-
+	bool closerSenpai = false;
 	if (mTargetID != INVALID_UNIT_ID)
 	{
 		//seeking unit
@@ -42,6 +42,7 @@ Steering* ArriveSteering::getSteering()
 	if (mType == Steering::SEEK)
 	{
 		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
+
 	}
 	else
 	{
@@ -50,11 +51,23 @@ Steering* ArriveSteering::getSteering()
 
 	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4 / 2;
 	pOwner->getPositionComponent()->setFacing(dir);
+
+	if (diff.getLength() < 140)
+	{
+		closerSenpai = true;
+	}
+
 	diff.normalize();
 	diff *= pOwner->getMaxAcc();
 
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	data.acc = diff;
+	if (closerSenpai)
+	{
+		data.acc = 0;
+		data.vel = 0;
+	}
+	
 	data.rotVel = 1.0f;
 	this->mData = data;
 	return this;

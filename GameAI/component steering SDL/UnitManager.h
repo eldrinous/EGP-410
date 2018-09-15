@@ -14,6 +14,7 @@ struct PositionData;
 struct PhysicsData;
 
 const UnitID PLAYER_UNIT_ID = 0;
+const UnitID ENEMY_UNIT_ID = 1;
 
 
 class UnitManager : public Trackable
