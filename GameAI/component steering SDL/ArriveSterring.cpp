@@ -52,22 +52,36 @@ Steering* ArriveSteering::getSteering()
 	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4 / 2;
 	pOwner->getPositionComponent()->setFacing(dir);
 
-	if (diff.getLength() < 140)
+	float targetSpeed;
+	float maxSpeed = pOwner->getMaxSpeed();
+	if (diff.getLength() < 0)
 	{
-		closerSenpai = true;
+		return 0;
+	}
+	if (diff.getLength() > 140)
+	{
+		targetSpeed = maxSpeed;
+	}
+	else
+	{
+		targetSpeed = maxSpeed * diff.getLength() / 140;
 	}
 
 	diff.normalize();
-	diff *= pOwner->getMaxAcc();
+	diff *= targetSpeed;
 
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
-	data.acc = diff;
-	if (closerSenpai)
+
+
+	data.acc = diff - data.vel;
+	data.acc /= .1;   //time to target
+
+	if (data.acc.getLength() > pOwner->getMaxAcc())
 	{
-		data.acc = 0;
-		data.vel = 0;
+		data.acc.normalize();
+		data.acc *= pOwner->getMaxAcc();
 	}
-	
+
 	data.rotVel = 1.0f;
 	this->mData = data;
 	return this;

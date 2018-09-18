@@ -67,16 +67,16 @@
     <ClCompile Include="Font.cpp">
       <Filter>Source Files\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.cpp">
+    <ClCompile Include="ArriveSterring.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\FaceSterring.cpp">
+    <ClCompile Include="FaceSterring.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderSteering.cpp">
+    <ClCompile Include="WanderChaseSteering.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderChaseSteering.cpp">
+    <ClCompile Include="WanderSteering.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
   </ItemGroup>
@@ -147,16 +147,16 @@
     <ClInclude Include="Font.h">
       <Filter>Header Files\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveSterring.h">
+    <ClInclude Include="ArriveSterring.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\FaceSteering.h">
+    <ClInclude Include="FaceSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderSteering.h">
+    <ClInclude Include="WanderChaseSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\WanderChaseSteering.h">
+    <ClInclude Include="WanderSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
   </ItemGroup>

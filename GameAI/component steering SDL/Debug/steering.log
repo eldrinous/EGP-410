@@ -1,1 +1,4 @@
-﻿  steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+﻿  ArriveSterring.cpp
+c:\users\student\documents\github\egp-410\gameai\component steering sdl\arrivesterring.cpp(52): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\student\documents\github\egp-410\gameai\component steering sdl\arrivesterring.cpp(77): warning C4305: 'argument': truncation from 'double' to 'float'
+  steering.vcxproj -> C:\Users\student\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
