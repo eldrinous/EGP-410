@@ -58,17 +58,38 @@ Steering* WanderSteering::getSteering()
 	}
 
 	diff.normalize();
+
+	if (closerSenpai)
+	{
+		//create circle and offset it and set a point
+		int radius = rand() % 100;
+		int rot = rand() % 360;
+		int offset = 100;
+		Vector2D targetPoint;
+		targetPoint.setX(cos(rot *3.14 / 180) * radius);
+		targetPoint.setY(sin(rot *3.14 / 180) * radius);
+
+		mTargetLoc += targetPoint + (diff * offset);
+
+		if (mTargetLoc.getY() > 750)
+		{
+			mTargetLoc.setY(750);
+		}
+
+		if (mTargetLoc.getX() > 1000)
+		{
+			mTargetLoc.setX(1000);
+		}
+	}
+
 	diff *= pOwner->getMaxAcc();
 
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	
-	if (closerSenpai)
-	{
-		mTargetLoc.setX(rand() % 1000);
-		mTargetLoc.setY(rand() % 750);
-	}
 	data.acc = diff;
 	data.rotVel = 1.0f;
 	this->mData = data;
 	return this;
 }
+
+

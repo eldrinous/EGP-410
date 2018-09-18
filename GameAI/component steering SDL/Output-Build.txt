@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: steering, Configuration: Debug Win32 ------
+1>steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========

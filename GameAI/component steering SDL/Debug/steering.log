@@ -1,14 +1,1 @@
-﻿  WanderChaseSteering.cpp
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(70): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(72): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(102): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(103): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(71): warning C4101: 'goRight': unreferenced local variable
-  FaceSterring.cpp
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\facesterring.cpp(46): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\facesterring.cpp(48): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\facesterring.cpp(47): warning C4101: 'goRight': unreferenced local variable
-  Generating Code...
-  steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+﻿  steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe
