@@ -18,6 +18,7 @@ FaceSteering::FaceSteering(const UnitID& ownerID, const Vector2D& targetLoc, con
 	else
 	{
 		mType = Steering::SEEK;
+
 	}
 	setOwnerID(ownerID);
 	setTargetID(targetID);
@@ -28,8 +29,11 @@ Steering* FaceSteering::getSteering()
 {
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
-	//are we seeking a location or a unit?
+	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 
+	//are we seeking a location or a unit?
+	bool closerSenpai = false;
+	bool slowRadius = 140;
 	if (mTargetID != INVALID_UNIT_ID)
 	{
 		//seeking unit
@@ -41,27 +45,43 @@ Steering* FaceSteering::getSteering()
 	if (mType == Steering::SEEK)
 	{
 		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
-	}
-	PhysicsData data = pOwner->getPhysicsComponent()->getData();
-	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4 / 2;
-	bool goRight;
-	float curDir = fmod(pOwner->getFacing(),2*3.14);
-	
-	if (dir - curDir > 0)
-	{
-		data.rotAcc = 1;
+
 	}
 	else
 	{
-		data.rotAcc = -1;
+		diff = pOwner->getPositionComponent()->getPosition() - mTargetLoc;
 	}
 
-	if (abs(curDir - dir) < 5 * 3.14 / 180)
+	float modRadianstoOriente = -90 * 3.14 / 180;
+	float rotation = fmod(atan2(diff.getY(), diff.getX()) - pOwner->getFacing() - 3.14, 2 * 3.14) + modRadianstoOriente;
+	float rotationSize = abs(rotation);
+	float targetRotation;
+	if (rotationSize < 0)
 	{
-		data.rotAcc = 0;
-		data.rotVel = 0;
+		return 0;
 	}
-	this->mData = data;
 
+	if (rotationSize > slowRadius)
+	{
+		targetRotation = pOwner->getMaxRotVel();
+	}
+	else
+	{
+		targetRotation = pOwner->getMaxRotVel() * rotationSize / slowRadius;
+	}
+
+	targetRotation *= rotation / rotationSize;
+
+	data.rotAcc = targetRotation - data.rotVel;
+
+	data.rotAcc /= .1;
+
+	if (abs(data.rotAcc) > data.maxRotAcc)
+	{
+		data.acc /= abs(data.rotAcc);
+		data.acc *= data.maxRotAcc;
+	}
+
+	this->mData = data;
 	return this;
 }

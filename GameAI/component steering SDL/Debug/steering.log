@@ -1,4 +1,12 @@
-﻿  ArriveSterring.cpp
-c:\users\student\documents\github\egp-410\gameai\component steering sdl\arrivesterring.cpp(52): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
-c:\users\student\documents\github\egp-410\gameai\component steering sdl\arrivesterring.cpp(77): warning C4305: 'argument': truncation from 'double' to 'float'
-  steering.vcxproj -> C:\Users\student\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+﻿  WanderChaseSteering.cpp
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(28): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(29): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(69): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(72): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(73): warning C4244: 'initializing': conversion from 'double' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(92): warning C4305: '/=': truncation from 'double' to 'float'
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(111): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(112): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(114): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+c:\users\student\desktop\mike's secret stash\egp-410\gameai\component steering sdl\wanderchasesteering.cpp(70): warning C4101: 'goRight': unreferenced local variable
+  steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe

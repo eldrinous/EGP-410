@@ -194,8 +194,6 @@ void Game::processLoop()
 		MESSAGE_MANAGER->addMessage( pMessage, 0 );
 	}
 
-
-	
 	//all this should be moved to InputManager!!!
 	{
 		//get keyboard state

@@ -38,7 +38,6 @@ Steering* WanderChaseSteering::getSteering()
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	//are we seeking a location or a unit?
 
-	bool closerSenpai = false;
 	if ((playerPos - pOwner->getPositionComponent()->getPosition()).getLength() < 200)
 	{
 		targetPlayer = true;
@@ -69,44 +68,50 @@ Steering* WanderChaseSteering::getSteering()
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4 / 2;
 	bool goRight;
-	float curDir = fmod(pOwner->getFacing(), 2 * 3.14);
 
-	if (dir - curDir > 0)
+	float modRadianstoOriente = -90 * 3.14 / 180;
+	float rotation = fmod(atan2(diff.getY(), diff.getX()) - pOwner->getFacing() - 3.14, 2 * 3.14) + modRadianstoOriente;
+	float rotationSize = abs(rotation);
+	float targetRotation;
+	if (rotationSize < 0)
 	{
-		data.rotAcc = 1;
+		return 0;
+	}
+
+	float slowRadius = 140;
+	if (rotationSize > slowRadius)
+	{
+		targetRotation = pOwner->getMaxRotVel();
 	}
 	else
 	{
-		data.rotAcc = -1;
+		targetRotation = pOwner->getMaxRotVel() * rotationSize / slowRadius;
 	}
+	targetRotation *= rotation / rotationSize;
+	data.rotAcc = targetRotation - data.rotVel;
+	data.rotAcc /= .1;
+	//end of face
 
-	if (abs(curDir - dir) < 5 * 3.14 / 180)
+	if (abs(data.rotAcc) > data.maxRotAcc)
 	{
-		data.rotAcc = 0;
-		data.rotVel = 0;
-	}
-
-
-	if (diff.getLength() < 140 && targetPlayer == false)
-	{
-		closerSenpai = true;
+		data.acc /= abs(data.rotAcc);
+		data.acc *= data.maxRotAcc;
 	}
 
 	diff.normalize();
 	diff *= pOwner->getMaxAcc();
-	
 
-	if (closerSenpai && targetPlayer == false)
+	if (targetPlayer == false)
 	{
 		//create circle and offset it and set a point
-		int radius = rand() % 100;
+		int radius = 50;
 		int rot = rand() % 360;
 		int offset = 100;
 		Vector2D targetPoint;
 		targetPoint.setX(cos(rot *3.14 / 180) * radius);
 		targetPoint.setY(sin(rot *3.14 / 180) * radius);
 
-		mTargetLoc += targetPoint + (diff * offset);
+		mTargetLoc = pOwner->getPositionComponent()->getPosition() + targetPoint + (diff * offset);
 
 		if (mTargetLoc.getY() > 750)
 		{
