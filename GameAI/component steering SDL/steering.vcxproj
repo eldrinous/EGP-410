@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.h" />
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.h" />
     <ClInclude Include="ArriveSterring.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
@@ -41,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.cpp" />
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.cpp" />
     <ClCompile Include="ArriveSterring.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />

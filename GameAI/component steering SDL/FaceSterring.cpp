@@ -33,7 +33,7 @@ Steering* FaceSteering::getSteering()
 
 	//are we seeking a location or a unit?
 	bool closerSenpai = false;
-	bool slowRadius = 140;
+	bool slowRadius = 250;
 	if (mTargetID != INVALID_UNIT_ID)
 	{
 		//seeking unit
@@ -53,13 +53,10 @@ Steering* FaceSteering::getSteering()
 	}
 
 	float modRadianstoOriente = -90 * 3.14 / 180;
-	float rotation = fmod(atan2(diff.getY(), diff.getX()) - pOwner->getFacing() - 3.14, 2 * 3.14) + modRadianstoOriente;
+	float rotation = fmod(atan2(diff.getY(), diff.getX()) - pOwner->getFacing(), 2 * 3.14) - 3.14 + modRadianstoOriente;
 	float rotationSize = abs(rotation);
 	float targetRotation;
-	if (rotationSize < 0)
-	{
-		return 0;
-	}
+	
 
 	if (rotationSize > slowRadius)
 	{
@@ -70,16 +67,24 @@ Steering* FaceSteering::getSteering()
 		targetRotation = pOwner->getMaxRotVel() * rotationSize / slowRadius;
 	}
 
+	if (rotationSize < 5 * 3.14 / 180)
+	{
+		data.rotAcc = 0;
+		data.rotVel = 0;
+		this->mData = data;
+		return this;
+	}
+
 	targetRotation *= rotation / rotationSize;
 
 	data.rotAcc = targetRotation - data.rotVel;
 
 	data.rotAcc /= .1;
 
-	if (abs(data.rotAcc) > data.maxRotAcc)
+	if (abs(data.rotAcc) > pOwner->getMaxRotAcc())
 	{
 		data.acc /= abs(data.rotAcc);
-		data.acc *= data.maxRotAcc;
+		data.acc *= pOwner->getMaxRotAcc();
 	}
 
 	this->mData = data;

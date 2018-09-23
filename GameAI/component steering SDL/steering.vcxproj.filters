@@ -82,6 +82,9 @@
     <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.cpp">
+      <Filter>Source Files\InputManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -165,6 +168,9 @@
     <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.h">
+      <Filter>Header Files\InputManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Header Files">
@@ -208,6 +214,12 @@
     </Filter>
     <Filter Include="Header Files\Components">
       <UniqueIdentifier>{3c9b3ca9-ee14-4c27-8903-1ed3fce18cb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\InputManager">
+      <UniqueIdentifier>{7a842115-2f08-4788-b2b6-9912983457ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\InputManager">
+      <UniqueIdentifier>{055ee535-5732-43af-9047-716965f47255}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

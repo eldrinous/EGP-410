@@ -2,7 +2,6 @@
 #include <assert.h>
 
 #include <sstream>
-#include <SDL.h>
 
 #include "Game.h"
 #include "GraphicsSystem.h"
@@ -16,6 +15,7 @@
 #include "PlayerMoveToMessage.h"
 #include "ComponentManager.h"
 #include "UnitManager.h"
+#include "InputManager.h"
 
 Game* gpGame = NULL;
 
@@ -63,7 +63,7 @@ bool Game::init()
 	mpGraphicsBufferManager = new GraphicsBufferManager(mpGraphicsSystem);
 	mpSpriteManager = new SpriteManager();
 
-
+	mpInputManager = new InputManager();
 	mpMessageManager = new GameMessageManager();
 	mpComponentManager = new ComponentManager(MAX_UNITS);
 	mpUnitManager = new UnitManager(MAX_UNITS);
@@ -139,6 +139,8 @@ void Game::cleanup()
 	mpGraphicsBufferManager = NULL;
 	delete mpSpriteManager;
 	mpSpriteManager = NULL;
+	delete mpInputManager;
+	mpInputManager = NULL;
 	delete mpMessageManager;
 	mpMessageManager = NULL;
 	delete mpUnitManager;
@@ -158,7 +160,8 @@ void Game::processLoop()
 {
 	mpUnitManager->updateAll(TARGET_ELAPSED_MS);
 	mpComponentManager->update(TARGET_ELAPSED_MS);
-	
+	mpInputManager->inputManagerUpdate();
+
 	//draw background
 	Sprite* pBackgroundSprite = mpSpriteManager->getSprite( BACKGROUND_SPRITE_ID );
 	GraphicsBuffer* pDest = mpGraphicsSystem->getBackBuffer();
@@ -167,16 +170,13 @@ void Game::processLoop()
 	//draw units
 	mpUnitManager->drawAll();
 
-	SDL_PumpEvents();
-	int x, y;
-	SDL_GetMouseState(&x, &y);
-
 	//create mouse text
 	std::stringstream mousePos;
-	mousePos << x << ":" << y;
+	Vector2D pos = mpInputManager->getMousePos();
+	mousePos << pos.getX() << ":" << pos.getY();
 
 	//write text at mouse position
-	mpGraphicsSystem->writeText(*mpFont, (float)x, (float)y, mousePos.str(), BLACK_COLOR);
+	mpGraphicsSystem->writeText(*mpFont, (float)pos.getX(), (float)pos.getY(), mousePos.str(), BLACK_COLOR);
 
 	//test of fill region
 	//mpGraphicsSystem->fillRegion(*pDest, Vector2D(300, 300), Vector2D(500, 500), RED_COLOR);
@@ -184,14 +184,23 @@ void Game::processLoop()
 
 	mpMessageManager->processMessagesForThisframe();
 
-	//get input - should be moved someplace better
-	SDL_PumpEvents();
-
-	if( SDL_GetMouseState(&x,&y) & SDL_BUTTON(SDL_BUTTON_LEFT) )
+	if (mpInputManager->checkClick(MOUSELEFT))
 	{
-		Vector2D pos( x, y );
-		GameMessage* pMessage = new PlayerMoveToMessage( pos );
-		MESSAGE_MANAGER->addMessage( pMessage, 0 );
+		GameMessage* pMessage = new PlayerMoveToMessage(pos);
+		MESSAGE_MANAGER->addMessage(pMessage, 0);
+	}
+	//if escape key was down then exit the loop
+	if (mpInputManager->checkClick(ESCAPE_KEY))
+	{
+		mShouldExit = true;
+	}
+
+	/*
+		if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
+	{
+		Vector2D pos(x, y);
+		GameMessage* pMessage = new PlayerMoveToMessage(pos);
+		MESSAGE_MANAGER->addMessage(pMessage, 0);
 	}
 
 	//all this should be moved to InputManager!!!
@@ -200,11 +209,13 @@ void Game::processLoop()
 		const Uint8 *state = SDL_GetKeyboardState(NULL);
 
 		//if escape key was down then exit the loop
-		if( state[SDL_SCANCODE_ESCAPE] )
+		if (state[SDL_SCANCODE_ESCAPE])
 		{
 			mShouldExit = true;
 		}
 	}
+	*/
+
 	Unit* pUnit = mpUnitManager->createRandomUnit(*mpSpriteManager->getSprite(AI_ICON_SPRITE_ID));
 	if (pUnit == NULL)
 	{
