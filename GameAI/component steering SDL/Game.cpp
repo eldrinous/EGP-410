@@ -117,7 +117,7 @@ bool Game::init()
 	pUnit->setShowTarget(false);
 	pUnit->setSteering(Steering::WANDERCHASE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
 
-
+	
 	return true;
 }
 
@@ -209,7 +209,7 @@ void Game::processLoop()
 	Unit* pUnit = mpUnitManager->createRandomUnit(*mpSpriteManager->getSprite(AI_ICON_SPRITE_ID));
 	if (pUnit == NULL)
 	{
-	mpUnitManager->deleteRandomUnit();
+
 	}
 
 	*/

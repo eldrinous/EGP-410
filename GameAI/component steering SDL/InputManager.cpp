@@ -1,6 +1,7 @@
 #include "InputManager.h"
 #include "GameMessage.h"
 #include "PlayerMoveToMessage.h"
+#include "KeyboardInputMessage.h"
 #include "GameMessageManager.h"
 #include "Game.h"
 
@@ -35,19 +36,23 @@ void InputManager::inputManagerUpdate()
 		switch (nextEvent.type)
 		{
 		case SDL_KEYDOWN:
+			GameMessage * pMessage;
 			if (nextEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 			{
 				//send to message that should exit
+				pMessage = new KeyboardToMessage(KEY_MESS_ESC);
 			}
-			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_A)
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_RETURN)
 			{
 				//send to message that should create unit
+				pMessage = new KeyboardToMessage(KEY_MESS_ENTER);
 			}
-			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_S)
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_D)
 			{
 				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_D);
 			}
-			
+			MESSAGE_MANAGER->addMessage(pMessage, 0);
 			break;
 		case SDL_KEYUP:
 			break;

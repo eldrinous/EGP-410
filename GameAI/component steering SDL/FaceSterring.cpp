@@ -24,7 +24,7 @@ Steering* FaceSteering::getSteering()
 
 	//are we seeking a location or a unit?
 	bool closerSenpai = false;
-	bool slowRadius = 10;
+	bool slowRadius = 90;
 
 	diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 

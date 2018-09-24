@@ -85,6 +85,9 @@
     <ClCompile Include="ArriveFaceSteering.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
+    <ClCompile Include="KeyboardInputMessage.cpp">
+      <Filter>Source Files\Messaging</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GraphicsBuffer.h">
@@ -170,6 +173,9 @@
     </ClInclude>
     <ClInclude Include="InputManager.h">
       <Filter>Header Files\InputManager</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputMessage.h">
+      <Filter>Header Files\Messaging</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
