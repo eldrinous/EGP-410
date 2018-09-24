@@ -9,6 +9,6 @@ public:
 protected:
 	virtual Steering* getSteering();
 	bool targetPlayer = false;
-	Vector2D playerPos;
+	Vector2D mPlayerPos;
 	Vector2D randPos;
 };

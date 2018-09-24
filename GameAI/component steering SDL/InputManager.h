@@ -7,13 +7,6 @@
 #include "PerformanceTracker.h"
 #include <Vector2D.h>
 
-enum keyPress
-{
-	MOUSELEFT,
-	MOUSERIGHT,
-	ESCAPE_KEY
-};
-
 class InputManager: public Trackable
 {
 public:
@@ -22,7 +15,6 @@ public:
 
 	void inputManagerUpdate();
 	Vector2D getMousePos();
-	bool checkClick(keyPress key);
 private:
 	Vector2D mMousePos;
 };

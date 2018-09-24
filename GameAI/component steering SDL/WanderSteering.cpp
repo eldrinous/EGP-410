@@ -2,6 +2,7 @@
 
 #include "Steering.h"
 #include "WanderSteering.h"
+#include "FaceSteering.h"
 #include "Game.h"
 #include "UnitManager.h"
 #include "Unit.h"
@@ -30,57 +31,29 @@ Steering* WanderSteering::getSteering()
 {
 	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
-	//are we seeking a location or a unit?
-	bool closerSenpai = false;
-	if (mTargetID != INVALID_UNIT_ID)
-	{
-		//seeking unit
-		Unit* pTarget = gpGame->getUnitManager()->getUnit(mTargetID);
-		assert(pTarget != NULL);
-	}
+	
+	
 
-	if (mType == Steering::SEEK)
-	{
-		diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
-
-	}
-	else
-	{
-		diff = pOwner->getPositionComponent()->getPosition() - mTargetLoc;
-	}
-
-	float dir = atan2(diff.getY(), diff.getX()) + atan(1) * 4 / 2;
-	pOwner->getPositionComponent()->setFacing(dir);
-
-	diff.normalize();
+	float addDegrees = -90 * 3.14/180;
+	Vector2D orientationInVector(cos(pOwner->getFacing() + addDegrees), sin(pOwner->getFacing() + addDegrees));
+	orientationInVector.normalize();
 
 	//create circle and offset it and set a point
-	int radius = 50;
+	int radius = 100;
 	int rot = rand() % 360;
 	int offset = 100;
 	Vector2D targetPoint;
 	targetPoint.setX(cos(rot *3.14 / 180) * radius);
 	targetPoint.setY(sin(rot *3.14 / 180) * radius);
 
-	mTargetLoc = pOwner->getPositionComponent()->getPosition() +  targetPoint + (diff * offset);
-
-	if (mTargetLoc.getY() > 750)
-	{
-		mTargetLoc.setY(750);
-	}
-
-	if (mTargetLoc.getX() > 1000)
-	{
-		mTargetLoc.setX(1000);
-	}
+	mTargetLoc = pOwner->getPositionComponent()->getPosition() +  targetPoint + (orientationInVector * offset);
 	
-
-	diff *= pOwner->getMaxAcc();
-
+	//face towards target;
+	FaceSteering faceSteer(mOwnerID, mTargetLoc, mTargetID);
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
+	data = faceSteer.getSteering()->getData();
 	
-	data.acc = diff;
-	data.rotVel = 1.0f;
+	data.acc = orientationInVector * pOwner->getMaxAcc();
 	this->mData = data;
 	return this;
 }

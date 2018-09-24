@@ -37,7 +37,7 @@ public:
 	void beginLoop();
 	void processLoop();
 	bool endLoop();
-
+	void modifyExit(bool check);
 	inline GraphicsSystem* getGraphicsSystem() const { return mpGraphicsSystem; };
 	inline GraphicsBufferManager* getGraphicsBufferManager() const { return mpGraphicsBufferManager; };
 	inline SpriteManager* getSpriteManager() const { return mpSpriteManager; };

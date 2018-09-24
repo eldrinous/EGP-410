@@ -79,11 +79,11 @@
     <ClCompile Include="WanderSteering.cpp">
       <Filter>Source Files\Steering</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.cpp">
-      <Filter>Source Files\Steering</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.cpp">
+    <ClCompile Include="InputManager.cpp">
       <Filter>Source Files\InputManager</Filter>
+    </ClCompile>
+    <ClCompile Include="ArriveFaceSteering.cpp">
+      <Filter>Source Files\Steering</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,7 +168,7 @@
     <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.h">
       <Filter>Header Files\Steering</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\InputManager.h">
+    <ClInclude Include="InputManager.h">
       <Filter>Header Files\InputManager</Filter>
     </ClInclude>
   </ItemGroup>

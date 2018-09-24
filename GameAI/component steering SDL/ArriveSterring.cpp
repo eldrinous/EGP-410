@@ -82,7 +82,6 @@ Steering* ArriveSteering::getSteering()
 		data.acc *= pOwner->getMaxAcc();
 	}
 
-	data.rotVel = 1.0f;
 	this->mData = data;
 	return this;
 }

@@ -54,7 +54,6 @@ Steering* SeekSteering::getSteering()
 
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	data.acc = diff;
-	data.rotVel = 1.0f;
 	this->mData = data;
 	return this;
 }
