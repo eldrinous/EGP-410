@@ -29,19 +29,17 @@ WanderSteering::WanderSteering(const UnitID& ownerID, const Vector2D& targetLoc,
 
 Steering* WanderSteering::getSteering()
 {
-	Vector2D diff;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	
-	
-
 	float addDegrees = -90 * 3.14/180;
+
 	Vector2D orientationInVector(cos(pOwner->getFacing() + addDegrees), sin(pOwner->getFacing() + addDegrees));
 	orientationInVector.normalize();
 
 	//create circle and offset it and set a point
-	int radius = 100;
+	int radius = 200;
 	int rot = rand() % 360;
-	int offset = 100;
+	int offset = 200;
 	Vector2D targetPoint;
 	targetPoint.setX(cos(rot *3.14 / 180) * radius);
 	targetPoint.setY(sin(rot *3.14 / 180) * radius);
@@ -53,6 +51,7 @@ Steering* WanderSteering::getSteering()
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	data = faceSteer.getSteering()->getData();
 	
+
 	data.acc = orientationInVector * pOwner->getMaxAcc();
 	this->mData = data;
 	return this;

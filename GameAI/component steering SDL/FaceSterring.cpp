@@ -24,7 +24,7 @@ Steering* FaceSteering::getSteering()
 
 	//are we seeking a location or a unit?
 	bool closerSenpai = false;
-	bool slowRadius = 90;
+	bool slowRadius = 20;
 
 	diff = mTargetLoc - pOwner->getPositionComponent()->getPosition();
 
@@ -36,11 +36,11 @@ Steering* FaceSteering::getSteering()
 
 	if (rotationSize > slowRadius)
 	{
-		targetRotation = pOwner->getMaxRotVel();
+		targetRotation = data.maxRotVel ;
 	}
 	else
 	{
-		targetRotation = pOwner->getMaxRotVel() * rotationSize / slowRadius;
+		targetRotation = data.maxRotVel * rotationSize / slowRadius;
 	}
 
 	if (rotationSize < 5 * 3.14 / 180)
@@ -53,14 +53,14 @@ Steering* FaceSteering::getSteering()
 
 	targetRotation *= rotation / rotationSize;
 
-	data.rotAcc = targetRotation - data.rotVel;
+	data.rotAcc = targetRotation ;
 
 	data.rotAcc /= .1;
 
-	if (abs(data.rotAcc) > pOwner->getMaxRotAcc())
+	if (abs(data.rotAcc) > data.maxRotAcc)
 	{
 		data.rotAcc /= abs(data.rotAcc);
-		data.rotAcc *= pOwner->getMaxRotAcc();
+		data.rotAcc *= data.maxRotAcc;
 	}
 
 	this->mData = data;
