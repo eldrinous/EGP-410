@@ -32,29 +32,33 @@ Steering* WanderSteering::getSteering()
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	
 	float addDegrees = -90 * 3.14/180;
-
 	Vector2D orientationInVector(cos(pOwner->getFacing() + addDegrees), sin(pOwner->getFacing() + addDegrees));
 	orientationInVector.normalize();
 
 	//create circle and offset it and set a point
-	int radius = 200;
+	int radius = 100;
 	int rot = rand() % 360;
-	int offset = 200;
+	int offset = 100;
 	Vector2D targetPoint;
 	targetPoint.setX(cos(rot *3.14 / 180) * radius);
 	targetPoint.setY(sin(rot *3.14 / 180) * radius);
 
-	mTargetLoc = pOwner->getPositionComponent()->getPosition() +  targetPoint + (orientationInVector * offset);
+	mTargetLoc =  targetPoint + (orientationInVector * offset);
 	
 	//face towards target;
-	FaceSteering faceSteer(mOwnerID, mTargetLoc, mTargetID);
+	FaceSteering faceSteer(mOwnerID, mTargetLoc + pOwner->getPositionComponent()->getPosition(), mTargetID);
 	PhysicsData data = pOwner->getPhysicsComponent()->getData();
 	data = faceSteer.getSteering()->getData();
 	
-
-	data.acc = orientationInVector * pOwner->getMaxAcc();
+	mTargetLoc.normalize();
+	data.acc =  mTargetLoc * pOwner->getMaxAcc();
 	this->mData = data;
 	return this;
 }
+
+
+
+
+
 
 

@@ -108,16 +108,6 @@ bool Game::init()
 	pUnit->setShowTarget(true);
 	pUnit->setSteering(Steering::SEEK, ZERO_VECTOR2D); //replace with FLEE or SEEK
 
-	//create 2 enemies
-	pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D((float)gpGame->getGraphicsSystem()->getWidth()-1, 0.0f), 0.0f));
-	pUnit->setShowTarget(true);
-	pUnit->setSteering(Steering::WANDERCHASE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
-
-	pUnit = mpUnitManager->createUnit(*pEnemyArrow, true, PositionData(Vector2D(0.0f, (float)gpGame->getGraphicsSystem()->getHeight()-1), 0.0f));
-	pUnit->setShowTarget(false);
-	pUnit->setSteering(Steering::WANDERCHASE, ZERO_VECTOR2D, PLAYER_UNIT_ID);
-
-	
 	return true;
 }
 

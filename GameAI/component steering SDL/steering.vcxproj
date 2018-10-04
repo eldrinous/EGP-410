@@ -12,12 +12,15 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\..\Mike%27s Secret Stash\EGP-410\GameAI\component steering SDL\ArriveFaceSteering.h" />
+    <ClInclude Include="AlignSteering.h" />
     <ClInclude Include="ArriveSterring.h" />
+    <ClInclude Include="CohesionSteering.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="ComponentManager.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="FaceSteering.h" />
+    <ClInclude Include="FlockSteering.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameMessage.h" />
@@ -32,6 +35,7 @@
     <ClInclude Include="PositionComponent.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="SeekSteering.h" />
+    <ClInclude Include="SeperationSteering.h" />
     <ClInclude Include="Sprite.h" />
     <ClInclude Include="SpriteManager.h" />
     <ClInclude Include="Steering.h" />
@@ -42,12 +46,15 @@
     <ClInclude Include="WanderSteering.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="AlignSteering.cpp" />
     <ClCompile Include="ArriveFaceSteering.cpp" />
     <ClCompile Include="ArriveSterring.cpp" />
+    <ClCompile Include="CohesionSteering.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="ComponentManager.cpp" />
     <ClCompile Include="FaceSterring.cpp" />
+    <ClCompile Include="FlockSteering.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameMessage.cpp" />
@@ -63,6 +70,7 @@
     <ClCompile Include="PositionComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="SeekSteering.cpp" />
+    <ClCompile Include="SeperationSteering.cpp" />
     <ClCompile Include="Sprite.cpp" />
     <ClCompile Include="SpriteManager.cpp" />
     <ClCompile Include="Steering.cpp" />
@@ -77,7 +85,7 @@
     <RootNamespace>allegrotest</RootNamespace>
     <Keyword>Win32Proj</Keyword>
     <ProjectName>steering</ProjectName>
-    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">

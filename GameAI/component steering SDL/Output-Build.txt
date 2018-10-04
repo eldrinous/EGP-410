@@ -1,3 +1,12 @@
 ﻿1>------ Build started: Project: steering, Configuration: Debug Win32 ------
-1>steering.vcxproj -> C:\Users\student\Desktop\Mike's Secret Stash\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+1>SeperationSteering.cpp
+1>FlockSteering.cpp
+1>c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\flocksteering.cpp(40): warning C4305: 'argument': truncation from 'double' to 'float'
+1>c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\flocksteering.cpp(44): warning C4305: 'initializing': truncation from 'double' to 'float'
+1>c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\flocksteering.cpp(52): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+1>c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\flocksteering.cpp(53): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+1>c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\flocksteering.cpp(55): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+1>Generating Code...
+1>steering.vcxproj -> C:\Users\micha\OneDrive\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+1>Done building project "steering.vcxproj".
 ========== Build: 1 succeeded, 0 failed, 1 up-to-date, 0 skipped ==========

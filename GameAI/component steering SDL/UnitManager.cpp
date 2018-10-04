@@ -75,7 +75,7 @@ Unit* UnitManager::createRandomUnit(const Sprite& sprite)
 	if (pUnit != NULL)
 	{
 		//pUnit->setSteering(Steering::SEEK, Vector2D(rand() % gpGame->getGraphicsSystem()->getWidth(), rand() % gpGame->getGraphicsSystem()->getHeight()));
-		pUnit->setSteering(Steering::WANDERCHASE, Vector2D(gpGame->getGraphicsSystem()->getWidth()/2, gpGame->getGraphicsSystem()->getHeight()/2), PLAYER_UNIT_ID);
+		pUnit->setSteering(Steering::FLOCK, Vector2D(gpGame->getGraphicsSystem()->getWidth()/2, gpGame->getGraphicsSystem()->getHeight()/2), PLAYER_UNIT_ID);
 	}
 	return pUnit;
 }
@@ -152,4 +152,9 @@ void UnitManager::updateAll(float elapsedTime)
 	{
 		it->second->update(elapsedTime);
 	}
+}
+
+std::map<UnitID, Unit*> UnitManager::getMap()
+{
+	return mUnitMap;
 }
