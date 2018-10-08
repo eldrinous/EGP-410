@@ -22,37 +22,66 @@ void InputManager::inputManagerUpdate()
 	int x, y;
 	if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
 	{
-		Vector2D pos(x, y);
-		mMousePos = pos;
-		GameMessage* pMessage = new PlayerMoveToMessage(pos);
-		MESSAGE_MANAGER->addMessage(pMessage, 0);
+
 	}
 
 	while (true)
 	{
+		GameMessage * pMessage = NULL;
 		if (!SDL_PollEvent(&nextEvent)) {
 			return;
 		}
 		switch (nextEvent.type)
 		{
 		case SDL_KEYDOWN:
-			GameMessage * pMessage;
+	
 			if (nextEvent.key.keysym.scancode == SDL_SCANCODE_ESCAPE)
 			{
 				//send to message that should exit
 				pMessage = new KeyboardToMessage(KEY_MESS_ESC);
-				MESSAGE_MANAGER->addMessage(pMessage, 0);
 			}
 			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_RETURN)
 			{
 				//send to message that should create unit
 				pMessage = new KeyboardToMessage(KEY_MESS_ENTER);
-				MESSAGE_MANAGER->addMessage(pMessage, 0);
 			}
 			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_D)
 			{
 				//send to message that should delete a unit
 				pMessage = new KeyboardToMessage(KEY_MESS_D);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_Q)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_Q);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_W)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_W);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_E)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_E);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_R)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_R);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_T)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_T);
+			}
+			else if (nextEvent.key.keysym.scancode == SDL_SCANCODE_Y)
+			{
+				//send to message that should delete a unit
+				pMessage = new KeyboardToMessage(KEY_MESS_Y);
+			}
+			if (pMessage != NULL)
+			{
 				MESSAGE_MANAGER->addMessage(pMessage, 0);
 			}
 

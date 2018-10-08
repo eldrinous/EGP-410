@@ -17,6 +17,7 @@ FlockSteering::FlockSteering(const UnitID& ownerID, const Vector2D& targetLoc, c
 {
 	setOwnerID(ownerID);
 	setTargetID(targetID);
+
 }
 
 Steering* FlockSteering::getSteering()
@@ -27,19 +28,17 @@ Steering* FlockSteering::getSteering()
 	//flocking behaviours
 	SeperationSteering seperationSteer(mOwnerID, mTargetLoc, mTargetID);
 	seperationSteer.getSteering();
-	seperation = seperationSteer.getSeperation();
+	seperation = seperationSteer.getSeperation() * gpGame->getWeight(SEPERATE);;
 
 	CohesionSteering cohesionSteer(mOwnerID, mTargetLoc, mTargetID);
 	cohesionSteer.getSteering();
-	cohesion = cohesionSteer.getCohesion();
+	cohesion = cohesionSteer.getCohesion() * gpGame->getWeight(COHESION);;
 	
 	AlignSteering alignSteer(mOwnerID, mTargetLoc, mTargetID);
 	alignSteer.getSteering();
-	alignment = alignSteer.getAlign();
+	alignment = alignSteer.getAlign() * gpGame->getWeight(ALIGN);
 
-	Vector2D flockTarget =  seperation *1  + cohesion *.6+ alignment * .2;
-	flockTarget.normalize();
-
+	Vector2D flockTarget =  seperation + cohesion + alignment;
 
 	float addDegrees = -90 * 3.14 / 180;
 	Vector2D orientationInVector(cos(pOwner->getFacing() + addDegrees), sin(pOwner->getFacing() + addDegrees));
@@ -53,7 +52,8 @@ Steering* FlockSteering::getSteering()
 	targetPoint.setY(sin(rot *3.14 / 180) * radius);
 
 	mTargetLoc = targetPoint + (orientationInVector * offset);
-	mTargetLoc.normalize();
+	mTargetLoc *= .3;
+
 	mTargetLoc += flockTarget;
 	//face towards target;
 	FaceSteering faceSteer(mOwnerID, mTargetLoc + pOwner->getPositionComponent()->getPosition(), mTargetID);

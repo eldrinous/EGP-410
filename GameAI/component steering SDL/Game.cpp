@@ -2,7 +2,7 @@
 #include <assert.h>
 #include <time.h>
 #include <sstream>
-
+#include <string>
 #include "Game.h"
 #include "GraphicsSystem.h"
 #include "GraphicsBuffer.h"
@@ -103,16 +103,31 @@ bool Game::init()
 		mpSpriteManager->createAndManageSprite(TARGET_SPRITE_ID, pTargetBuffer, 0, 0, (float)pTargetBuffer->getWidth(), (float)pTargetBuffer->getHeight());
 	}
 
-	//setup units
-	Unit* pUnit = mpUnitManager->createPlayerUnit(*pArrowSprite);
-	pUnit->setShowTarget(true);
-	pUnit->setSteering(Steering::SEEK, ZERO_VECTOR2D); //replace with FLEE or SEEK
+	//get weights
+	std::ifstream iFile;
+	std::string value;
+	iFile.open("FlockWeights.txt");
+	iFile.ignore(256, ':');
+	std::getline(iFile, value);
+	mAlignmentWeight = stof(value);
 
+	iFile.ignore(256,':');
+	std::getline(iFile, value);
+	mCohesionWeight = stof(value);
+
+	iFile.ignore(256,':');
+	std::getline(iFile, value);
+	mSeperationWeight = stof(value);
 	return true;
 }
 
 void Game::cleanup()
 {
+	std::ofstream oFile;
+	oFile.open("FlockWeights.txt");
+	oFile << "Alignment: " + std::to_string(mAlignmentWeight) << std::endl;
+	oFile << "Cohesion: " + std::to_string(mCohesionWeight) << std::endl;
+	oFile << "Seperation: " + std::to_string(mSeperationWeight) << std::endl;
 	//delete the timers
 	delete mpLoopTimer;
 	mpLoopTimer = NULL;
@@ -161,14 +176,10 @@ void Game::processLoop()
 	//draw units
 	mpUnitManager->drawAll();
 
-	//create mouse text
-	std::stringstream mousePos;
-	Vector2D pos = mpInputManager->getMousePos();
-	mousePos << pos.getX() << ":" << pos.getY();
-
 	//write text at mouse position
-	mpGraphicsSystem->writeText(*mpFont, (float)pos.getX(), (float)pos.getY(), mousePos.str(), BLACK_COLOR);
-
+	mpGraphicsSystem->writeText(*mpFont, 0, 700, "Align: " + std::to_string(mAlignmentWeight), BLACK_COLOR);
+	mpGraphicsSystem->writeText(*mpFont, 300, 700, "Cohede: " + std::to_string(mCohesionWeight), BLACK_COLOR);
+	mpGraphicsSystem->writeText(*mpFont, 600, 700, "Seperate: " + std::to_string(mSeperationWeight), BLACK_COLOR);
 	//test of fill region
 	//mpGraphicsSystem->fillRegion(*pDest, Vector2D(300, 300), Vector2D(500, 500), RED_COLOR);
 	mpGraphicsSystem->swap();
@@ -228,5 +239,66 @@ float genRandomFloat()
 void Game::modifyExit(bool check)
 {
 	mShouldExit = check;
+}
+
+void Game::modifyWeight(float value, weightType type)
+{
+	switch (type)
+	{
+	case ALIGN:
+		mAlignmentWeight += value;
+		if (mAlignmentWeight > 1)
+		{
+			mAlignmentWeight = 1;
+		}
+		else if (mAlignmentWeight < 0)
+		{
+			mAlignmentWeight = 0;
+		}
+		break;
+	case COHESION:
+		mCohesionWeight += value;
+		if (mCohesionWeight > 1)
+		{
+			mCohesionWeight = 1;
+		}
+		else if (mCohesionWeight < 0)
+		{
+			mCohesionWeight = 0;
+		}
+		break;
+	case SEPERATE:
+		mSeperationWeight += value;
+		if (mSeperationWeight > 1)
+		{
+			mSeperationWeight = 1;
+		}
+		else if (mSeperationWeight < 0)
+		{
+			mSeperationWeight = 0;
+		}
+		break;
+	default:
+		break;
+	}
+}
+
+float Game::getWeight(weightType type)
+{
+	switch (type)
+	{
+	case ALIGN:
+		return mAlignmentWeight;
+		break;
+	case COHESION:
+		return mCohesionWeight;
+		break;
+	case SEPERATE:
+		return mSeperationWeight;
+		break;
+	default:
+		return 0;
+		break;
+	}
 }
 

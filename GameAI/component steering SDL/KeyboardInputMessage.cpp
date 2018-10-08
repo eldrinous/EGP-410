@@ -24,12 +24,39 @@ void KeyboardToMessage::process()
 	}
 	else if (mInput == KEY_MESS_ENTER)
 	{
-		Unit* pUnit = gpGame->getUnitManager()->createRandomUnit(*gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID));
-	
+		for (int i = 0; i < 10; i++)
+		{
+			Unit* pUnit = gpGame->getUnitManager()->createRandomUnit(*gpGame->getSpriteManager()->getSprite(AI_ICON_SPRITE_ID));
+
+		}
 	}
 	else if (mInput == KEY_MESS_D)
 	{
 		gpGame->getUnitManager()->deleteRandomUnit();
+	}
+	else if (mInput == KEY_MESS_Q)
+	{
+		gpGame->modifyWeight(-.1, ALIGN);
+	}
+	else if (mInput == KEY_MESS_W)
+	{
+		gpGame->modifyWeight(.1, ALIGN);
+	}
+	else if (mInput == KEY_MESS_E)
+	{
+		gpGame->modifyWeight(-.1, COHESION);
+	}
+	else if (mInput == KEY_MESS_R)
+	{
+		gpGame->modifyWeight(.1, COHESION);
+	}
+	else if (mInput == KEY_MESS_T)
+	{
+		gpGame->modifyWeight(-.1, SEPERATE);
+	}
+	else if (mInput == KEY_MESS_Y)
+	{
+		gpGame->modifyWeight(.1, SEPERATE);
 	}
 }
 

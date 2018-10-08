@@ -1,1 +1,8 @@
-﻿  steering.vcxproj -> C:\Users\micha\OneDrive\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe
+﻿  KeyboardInputMessage.cpp
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(39): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(43): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(47): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(51): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(55): warning C4305: 'argument': truncation from 'double' to 'float'
+c:\users\micha\onedrive\documents\github\egp-410\gameai\component steering sdl\keyboardinputmessage.cpp(59): warning C4305: 'argument': truncation from 'double' to 'float'
+  steering.vcxproj -> C:\Users\micha\OneDrive\Documents\GitHub\EGP-410\GameAI\component steering SDL\Debug\steering.exe

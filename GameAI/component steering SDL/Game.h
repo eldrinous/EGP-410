@@ -3,8 +3,8 @@
 #include "Trackable.h"
 #include "PerformanceTracker.h"
 #include "Defines.h"
-#include <string>
-
+#include <fstream>
+#include <iostream>
 class GraphicsSystem;
 class GraphicsBuffer;
 class Font;
@@ -24,6 +24,13 @@ const IDType TARGET_SPRITE_ID = 3;
 
 const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
+enum weightType
+{
+	ALIGN,
+	COHESION,
+	SEPERATE
+};
+
 class Game:public Trackable
 {
 public:
@@ -38,6 +45,9 @@ public:
 	void processLoop();
 	bool endLoop();
 	void modifyExit(bool check);
+	void modifyWeight(float value, weightType type);
+	float getWeight(weightType type);
+
 	inline GraphicsSystem* getGraphicsSystem() const { return mpGraphicsSystem; };
 	inline GraphicsBufferManager* getGraphicsBufferManager() const { return mpGraphicsBufferManager; };
 	inline SpriteManager* getSpriteManager() const { return mpSpriteManager; };
@@ -60,6 +70,8 @@ private:
 	InputManager* mpInputManager;
 	bool mShouldExit;
 
+
+	float mCohesionWeight, mAlignmentWeight, mSeperationWeight;
 	//should be somewhere else
 	GraphicsBufferID mBackgroundBufferID = "woods";
 	GraphicsBufferID mPlayerIconBufferID = "player";

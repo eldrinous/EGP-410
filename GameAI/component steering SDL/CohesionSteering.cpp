@@ -28,16 +28,29 @@ Steering* CohesionSteering::getSteering()
 	int unitCount = 0;
 	for (auto it = tempMap.begin(); it != tempMap.end(); ++it)
 	{
-		Vector2D pos(it->second->getPositionComponent()->getPosition());
-		if ((pos - ownerPos).getLength() < scanDistance) //check if unit is within the neighborhood
+		if (it->second != pOwner)
 		{
+			Vector2D pos(it->second->getPositionComponent()->getPosition());
+			Vector2D diff = pos - ownerPos;
+			float length = diff.getLength();
+			
+			Vector2D currVel = pOwner->getPhysicsComponent()->getVelocity();
+			diff.normalize();
+			currVel.normalize();
+			float facing = VectorDotProduct(diff,currVel);
+			if (length < scanDistance && facing > 0 ) //check if unit is within the neighborhood
+			{
 				unitCount++;
 				targetLoc += pos;
+			}
 		}
 	}
-	targetLoc /= unitCount; //find average position of all units excluding the owner
-	targetLoc = targetLoc - ownerPos;
 
+	if (unitCount > 0)
+	{
+		targetLoc /= unitCount; //find average position of all units excluding the owner
+		targetLoc = targetLoc - ownerPos;
+	}
 	mCohesion = targetLoc;
 	return this;
 }
@@ -45,4 +58,9 @@ Steering* CohesionSteering::getSteering()
 Vector2D CohesionSteering::getCohesion()
 {
 	return mCohesion;
+}
+
+float CohesionSteering::VectorDotProduct(Vector2D v1, Vector2D v2)
+{
+	return v1.getX() * v2.getX() + v1.getY() * v2.getY();
 }

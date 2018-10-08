@@ -18,7 +18,7 @@ AlignSteering::AlignSteering(const UnitID& ownerID, const Vector2D& targetLoc, c
 
 Steering* AlignSteering::getSteering()
 {
-	float scanDistance = 300;
+	float scanDistance = 200;
 	Unit* pOwner = gpGame->getUnitManager()->getUnit(mOwnerID);
 	UnitManager* unitMan = gpGame->getUnitManager();
 	Vector2D ownerPos = pOwner->getPositionComponent()->getPosition();
@@ -37,7 +37,7 @@ Steering* AlignSteering::getSteering()
 		}
 	}
 	targetLoc /= unitCount; //find average position of all units excluding the owner
-
+	
 	mAlign = targetLoc;
 	return this;
 }
