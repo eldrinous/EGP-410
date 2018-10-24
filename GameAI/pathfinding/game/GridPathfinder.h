@@ -14,7 +14,7 @@ public:
 	GridPathfinder( GridGraph* pGraph );
 	virtual ~GridPathfinder();
 
-	virtual Path* findPath( Node* pFrom, Node* pTo ) = 0;
+	virtual Path* findPath( Node* pFrom, Node* pTo , int index) = 0;
 	
 #ifdef VISUALIZE_PATH
 	//just for visualization

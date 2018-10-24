@@ -13,7 +13,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{09059697-DB0D-44AE-B867-2437B1E3D875}</ProjectGuid>
     <RootNamespace>pathfinding</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -91,6 +91,7 @@
     <ClInclude Include="..\common\Renderer.h" />
     <ClInclude Include="..\common\Sprite.h" />
     <ClInclude Include="..\common\SpriteManager.h" />
+    <ClInclude Include="aStar.h" />
     <ClInclude Include="Connection.h" />
     <ClInclude Include="DebugContent.h" />
     <ClInclude Include="DebugDisplay.h" />
@@ -101,6 +102,8 @@
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GridGraph.h" />
     <ClInclude Include="GridPathfinder.h" />
+    <ClInclude Include="InputManager.h" />
+    <ClInclude Include="KeyboardInputMessage.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="Path.h" />
     <ClInclude Include="Pathfinder.h" />
@@ -119,6 +122,7 @@
     <ClCompile Include="..\common\Renderer.cpp" />
     <ClCompile Include="..\common\Sprite.cpp" />
     <ClCompile Include="..\common\SpriteManager.cpp" />
+    <ClCompile Include="aStar.cpp" />
     <ClCompile Include="Connection.cpp" />
     <ClCompile Include="DebugDisplay.cpp" />
     <ClCompile Include="DepthFirstPathfinder.cpp" />
@@ -128,6 +132,8 @@
     <ClCompile Include="Graph.cpp" />
     <ClCompile Include="GridGraph.cpp" />
     <ClCompile Include="GridPathfinder.cpp" />
+    <ClCompile Include="InputManager.cpp" />
+    <ClCompile Include="KeyboardInputMessage.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
     <ClCompile Include="Path.cpp" />

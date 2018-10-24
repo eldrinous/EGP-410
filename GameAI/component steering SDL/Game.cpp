@@ -179,7 +179,7 @@ void Game::processLoop()
 	//write text at mouse position
 	mpGraphicsSystem->writeText(*mpFont, 0, 700, "Align: " + std::to_string(mAlignmentWeight), BLACK_COLOR);
 	mpGraphicsSystem->writeText(*mpFont, 300, 700, "Cohede: " + std::to_string(mCohesionWeight), BLACK_COLOR);
-	mpGraphicsSystem->writeText(*mpFont, 600, 700, "Seperate: " + std::to_string(mSeperationWeight), BLACK_COLOR);
+	mpGraphicsSystem->writeText(*mpFont, 600, 700, "Separate: " + std::to_string(mSeperationWeight), BLACK_COLOR);
 	//test of fill region
 	//mpGraphicsSystem->fillRegion(*pDest, Vector2D(300, 300), Vector2D(500, 500), RED_COLOR);
 	mpGraphicsSystem->swap();

@@ -69,6 +69,7 @@ Path* DepthFirstPathfinder::findPath( Node* pFrom, Node* pTo )
 			{
 				nodesToVisit.push_front( pTempToNode );//uncomment me for depth-first search
 				//nodesToVisit.push_back( pTempToNode );//uncomment me for breadth-first search
+				
 				if( pTempToNode == pTo )
 				{
 					toNodeAdded = true;
@@ -76,7 +77,6 @@ Path* DepthFirstPathfinder::findPath( Node* pFrom, Node* pTo )
 #ifdef VISUALIZE_PATH
 				mVisitedNodes.push_back( pTempToNode );
 #endif
-
 			}
 		}
 	}

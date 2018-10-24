@@ -108,6 +108,15 @@
     <ClInclude Include="..\common\Font.h">
       <Filter>Common\Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="aStar.h">
+      <Filter>Header Files\pathfinding</Filter>
+    </ClInclude>
+    <ClInclude Include="InputManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardInputMessage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\common\Game.cpp">
@@ -187,6 +196,15 @@
     </ClCompile>
     <ClCompile Include="..\common\Font.cpp">
       <Filter>Common\Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aStar.cpp">
+      <Filter>Source Files\pathfinding</Filter>
+    </ClCompile>
+    <ClCompile Include="InputManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardInputMessage.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

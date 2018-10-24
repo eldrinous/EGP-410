@@ -19,7 +19,7 @@ class GridVisualizer;
 class GridGraph;
 class GridPathfinder;
 class DebugDisplay;
-
+class InputManager;
 const float LOOP_TARGET_TIME = 33.3f;//how long should each frame of execution take? 30fps = 33.3ms/frame
 
 
@@ -37,6 +37,8 @@ public:
 	virtual void processLoop();
 	virtual bool endLoop();
 
+	void newPathFind(int index);
+	int getType();
 	//accessors
 	inline GameMessageManager* getMessageManager() { return mpMessageManager; };
 	inline GridVisualizer* getGridVisualizer() { return mpGridVisualizer; };
@@ -49,8 +51,13 @@ private:
 	GridVisualizer* mpGridVisualizer;
 	GridGraph* mpGridGraph;
 	DebugDisplay* mpDebugDisplay;
+	InputManager* mpInputManager;	
 
 	GridPathfinder* mpPathfinder;
+	GridPathfinder* mpAStarPathfinder;
+	GridPathfinder* mpDepthPathfinder;
+	GridPathfinder* mpDijkstraPathfinder;
 
+	int mIsPatherType;
 };
 

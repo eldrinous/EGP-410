@@ -14,6 +14,16 @@ public:
 
 	const NODE_ID& getId() const {return mId;};
 
+	Node* getBackPTR();
+	float getCost();
+	float getHeu();
+	void setBackPTR(Node* newBacker);
+	void setCost(float newCost);
+	void setHeu(float newheu);
+	
 private:
 	const NODE_ID mId;
+	float costSoFar;
+	float mHeuristic;
+	Node* pBackPTR;
 };

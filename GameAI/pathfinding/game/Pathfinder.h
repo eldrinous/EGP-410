@@ -17,7 +17,7 @@ public:
 	Pathfinder( Graph* pGraph );
 	virtual ~Pathfinder();
 
-	virtual Path* findPath( Node* pFrom, Node* pTo ) = 0;
+	virtual Path* findPath( Node* pFrom, Node* pTo , int index) = 0;
 
 protected:
 	Graph* mpGraph;

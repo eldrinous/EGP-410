@@ -26,7 +26,7 @@ PerformanceTracker* gpPerformanceTracker = NULL;
 int main(int argc, char **argv)
 {
 	gpPerformanceTracker = new PerformanceTracker();
-
+	MemoryTracker* gMemoryTracker = MemoryTracker::getInstance();
 	gpGame = new GameApp();
 
 	gpGame->init();
@@ -45,7 +45,7 @@ int main(int argc, char **argv)
 	delete gpGame;
 	delete gpPerformanceTracker;
 
-	gMemoryTracker.reportAllocations( std::cout );
+	gMemoryTracker->reportAllocations( std::cout );
 
 	system("pause");
 

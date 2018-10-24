@@ -18,11 +18,11 @@
 #include "GridVisualizer.h"
 #include "DebugDisplay.h"
 #include "PathfindingDebugContent.h"
-
+#include "aStar.h"
 #include <SDL.h>
 #include <fstream>
 #include <vector>
-
+#include "InputManager.h"
 const int GRID_SQUARE_SIZE = 32;
 const std::string gFileName = "pathgrid.txt";
 
@@ -49,6 +49,8 @@ bool GameApp::init()
 		return false;
 	}
 
+	mpInputManager = new InputManager();
+
 	mpMessageManager = new GameMessageManager();
 
 	//create and load the Grid, GridBuffer, and GridRenderer
@@ -62,8 +64,8 @@ bool GameApp::init()
 	//init the nodes and connections
 	mpGridGraph->init();
 
-	mpPathfinder = new DepthFirstPathfinder(mpGridGraph);
 
+	mpPathfinder = new aStarPathfinder(mpGridGraph);
 	//load buffers
 	mpGraphicsBufferManager->loadBuffer(mBackgroundBufferID, "wallpaper.bmp");
 
@@ -84,6 +86,9 @@ bool GameApp::init()
 
 void GameApp::cleanup()
 {
+	delete mpInputManager;
+	mpInputManager = NULL;
+
 	delete mpMessageManager;
 	mpMessageManager = NULL;
 
@@ -98,7 +103,7 @@ void GameApp::cleanup()
 
 	delete mpPathfinder;
 	mpPathfinder = NULL;
-
+;
 	delete mpDebugDisplay;
 	mpDebugDisplay = NULL;
 }
@@ -124,34 +129,7 @@ void GameApp::processLoop()
 
 	mpMessageManager->processMessagesForThisframe();
 
-	//get input - should be moved someplace better
-	SDL_PumpEvents();
-	int x, y;
-
-	if (SDL_GetMouseState(&x, &y) & SDL_BUTTON(SDL_BUTTON_LEFT))
-	{
-		static Vector2D lastPos(0.0f, 0.0f);
-		Vector2D pos(x,y);
-		if (lastPos.getX() != pos.getX() || lastPos.getY() != pos.getY())
-		{
-			GameMessage* pMessage = new PathToMessage(lastPos, pos);
-			mpMessageManager->addMessage(pMessage, 0);
-			lastPos = pos;
-		}
-	}
-
-	//get input - should be moved someplace better
-	//all this should be moved to InputManager!!!
-	{
-		//get keyboard state
-		const Uint8 *state = SDL_GetKeyboardState(NULL);
-
-		//if escape key was down then exit the loop
-		if (state[SDL_SCANCODE_ESCAPE])
-		{
-			markForExit();
-		}
-	}
+	mpInputManager->inputManagerUpdate();
 
 	//should be last thing in processLoop
 	Game::processLoop();
@@ -160,4 +138,14 @@ void GameApp::processLoop()
 bool GameApp::endLoop()
 {
 	return Game::endLoop();
+}
+
+void GameApp::newPathFind(int index)
+{
+	mIsPatherType = index;
+}
+
+int GameApp::getType()
+{
+	return mIsPatherType;
 }
